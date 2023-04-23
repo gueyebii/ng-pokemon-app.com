@@ -1,13 +1,39 @@
-<div
-  class="container bg-dark text-light my-5 py-5 justify-content-center"
-  style="height: auto"
->
+<div class="container my-5 py-5 justify-content-center" style="height: auto">
+  <input
+    class="input-form"
+    type="text"
+    #input
+    (keyup.enter)="pokemonSelect(input.value)"
+  />
+  <p *ngIf="pokemonSelected">
+    vous avez selectionner le pokemon : {{ pokemonSelected.name }}
+  </p>
 
-    <input type="text" #input  (keypress)="pokemonSelect(input.value)">
-    <p> {{ pokemonSelected?.name }} </p>
+  <p *ngIf="!pokemonSelected">aucun pokemon n'a été trouver</p>
   <h1 class="text-warning">Liste des Pokemons</h1>
-  <span *ngFor="let pokemon of pokemonsList">
-    <h5  class="btn btn-danger" >{{ pokemon.name }}</h5> <br>
-  </span>
-  <a href="#" class="btn btn-warning" > CLICK ME </a>
+  <!-- affichage de la liste des pokemons -->
+  <div class="row">
+    <div class="col-md-3 col-sm-6" *ngFor="let pokemon of pokemonsList">
+      <div class="card mb-3">
+        <img
+          src="{{ pokemon.picture }}"
+          class="img-fluid rounded-start"
+          alt="image de pokemon"
+        />
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">{{ pokemon.name }}</h5>
+            <p class="card-text">
+              {{ pokemon.created | date: "dd/MM/yyyy" }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h5 class="btn btn-danger"></h5>
+  <br />
+
+  <a href="#" class="btn btn-warning"> CLICK ME </a>
 </div>

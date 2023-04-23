@@ -11,19 +11,22 @@ export class AppComponent implements OnInit {
   title = "ng-pokemon-app";
   pokemonsList: Pokemon[] = POKEMONS;
   pokemonSelected: Pokemon | undefined;
+
   ngOnInit(): void {
     console.table(this.pokemonsList);
   }
 
   pokemonSelect(pokemonId: string) {
-    const id = +pokemonId;
-    if(id>11){
-      console.log("ce pokemon n'existe pas ");
+    const pokemon: Pokemon | undefined= this.pokemonsList.find(pokemon => pokemon.id == +pokemonId)
+    if(pokemon){
+      console.log(`vous avez sélectioner : ${pokemon.name}`);
+      this.pokemonSelected = pokemon;
     }
-    else
-    {
-      console.log(`vous avez sélectioner le pokemon ${this.pokemonsList[id].name} `);
+    else{
+      console.log("Le pokemon recherché n'existe pas ");
+      this.pokemonSelected = pokemon      
     }
+    
   }
 
 }
