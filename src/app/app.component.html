@@ -1,0 +1,13 @@
+<div
+  class="container bg-dark text-light my-5 py-5 justify-content-center"
+  style="height: auto"
+>
+
+    <input type="text" #input  (keypress)="pokemonSelect(input.value)">
+    <p> {{ pokemonSelected?.name }} </p>
+  <h1 class="text-warning">Liste des Pokemons</h1>
+  <span *ngFor="let pokemon of pokemonsList">
+    <h5  class="btn btn-danger" >{{ pokemon.name }}</h5> <br>
+  </span>
+  <a href="#" class="btn btn-warning" > CLICK ME </a>
+</div>
